@@ -5,6 +5,8 @@ import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
+import net.minecraft.item.BlockItem;
+import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -15,11 +17,11 @@ import net.minecraftforge.registries.ObjectHolder;
 public class RegistryHandler {
 
     //Atoms
-    @ObjectHolder(OpusMinecraftum.ID + ":atom_block")
-    public static Block ATOM_BLOCK;
+    /*@ObjectHolder(OpusMinecraftum.ID + ":atom_block")
+    public static Block ATOM_BLOCK;*/
     @ObjectHolder(OpusMinecraftum.ID + ":air_atom")
     public static Block AIR_ATOM;
-    @ObjectHolder(OpusMinecraftum.ID + ":earth_atom")
+    /*@ObjectHolder(OpusMinecraftum.ID + ":earth_atom")
     public static Block EARTH_ATOM;
     @ObjectHolder(OpusMinecraftum.ID + ":fire_atom")
     public static Block FIRE_ATOM;
@@ -44,12 +46,12 @@ public class RegistryHandler {
     @ObjectHolder(OpusMinecraftum.ID + ":silver_atom")
     public static Block SILVER_ATOM;
     @ObjectHolder(OpusMinecraftum.ID + ":gold_atom")
-    public static Block GOLD_ATOM;
+    public static Block GOLD_ATOM;*/
 
     //Tile Entities
-    /*@ObjectHolder(OpusMinecraftum.ID + ":calcify_glyph")
+    @ObjectHolder(OpusMinecraftum.ID + ":calcify_glyph")
     public static TileEntity CALCIFY_GLYPH;
-    @ObjectHolder(OpusMinecraftum.ID + ":duplication_glyph")
+    /*@ObjectHolder(OpusMinecraftum.ID + ":duplication_glyph")
     public static TileEntity DUPLICATION_GLYPH;
     @ObjectHolder(OpusMinecraftum.ID + ":animismus_glyph")
     public static TileEntity ANIMISMUS_GLYPH;
@@ -63,8 +65,8 @@ public class RegistryHandler {
 
     @SubscribeEvent
     public static void registerBlocks(RegistryEvent.Register<Block> event) {
-        event.getRegistry().register(getAtomProps("atom_block"));
-        event.getRegistry().register(getAtomProps("air_atom"));
+        //event.getRegistry().register(getAtomProps("atom_block"));
+        event.getRegistry().register(getAtomProps("air_atom"));/*
         event.getRegistry().register(getAtomProps("earth_atom"));
         event.getRegistry().register(getAtomProps("fire_atom"));
         event.getRegistry().register(getAtomProps("water_atom"));
@@ -77,13 +79,11 @@ public class RegistryHandler {
         event.getRegistry().register(getAtomProps("iron_atom"));
         event.getRegistry().register(getAtomProps("copper_atom"));
         event.getRegistry().register(getAtomProps("silver_atom"));
-        event.getRegistry().register(getAtomProps("gold_atom"));
+        event.getRegistry().register(getAtomProps("gold_atom"));*/
     }
 
-
-
     private static Block getAtomProps(String name){
-        return new AtomBlock(AbstractBlock.Properties.create(Material.MISCELLANEOUS, MaterialColor.AIR).sound(SoundType.SHROOMLIGHT)).setRegistryName(OpusMinecraftum.createRes(name));
+        return new AtomBlock(AbstractBlock.Properties.create(Material.GLASS).sound(SoundType.SHROOMLIGHT)).setRegistryName(OpusMinecraftum.createRes(name));
     }
 
     private static TileEntity getGlyphProps(String name){

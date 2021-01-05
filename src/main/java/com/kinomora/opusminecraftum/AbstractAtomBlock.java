@@ -17,7 +17,7 @@ public class AbstractAtomBlock extends BreakableBlock {
     }
 
     public VoxelShape getRayTraceShape(BlockState state, IBlockReader reader, BlockPos pos, ISelectionContext context) {
-        return VoxelShapes.empty();
+        return VoxelShapes.fullCube();
     }
 
     @OnlyIn(Dist.CLIENT)

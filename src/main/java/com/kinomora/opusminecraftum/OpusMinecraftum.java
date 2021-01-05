@@ -1,5 +1,7 @@
 package com.kinomora.opusminecraftum;
 
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -25,6 +27,7 @@ public class OpusMinecraftum
     }
 
     private void clientSetup(FMLClientSetupEvent event) {
+        RenderTypeLookup.setRenderLayer(RegistryHandler.AIR_ATOM, RenderType.getTranslucent());
     }
 
     private void setup(FMLCommonSetupEvent event) {
