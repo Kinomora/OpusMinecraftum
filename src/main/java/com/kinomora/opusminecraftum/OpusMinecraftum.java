@@ -27,7 +27,7 @@ public class OpusMinecraftum
     }
 
     private void clientSetup(FMLClientSetupEvent event) {
-        RenderTypeLookup.setRenderLayer(RegistryHandler.AIR_ATOM, RenderType.getTranslucent());
+        RenderTypeLookup.setRenderLayer(RegistryHandler.ATOM_BLOCK, RenderType.getTranslucent());
     }
 
     private void setup(FMLCommonSetupEvent event) {
