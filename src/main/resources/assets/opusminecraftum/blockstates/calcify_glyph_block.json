@@ -1,0 +1,10 @@
+{
+    "variants": {
+        "fullness=empty": {
+            "model": "opusminecraftum:block/calcify_glyph_empty"
+        },
+        "fullness=full": {
+            "model": "opusminecraftum:block/salt_atom"
+        }
+    }
+}

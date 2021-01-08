@@ -1,9 +1,9 @@
 package com.kinomora.opusminecraftum;
 
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.AbstractGlassBlock;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.PistonBlock;
+import net.minecraft.block.*;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import net.minecraftforge.event.world.PistonEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -18,18 +18,40 @@ public class AtomBlock extends AbstractAtomBlock {
 
     //For pushing into glyphs/TE's or the solver
     @SubscribeEvent
-    public static void onPistonPushPre(PistonEvent.Pre event){
-        event.setCanceled(true);
-        System.out.println("owo");
-        event.getWorld().setBlockState(event.getFaceOffsetPos(), Blocks.AIR.getDefaultState(), 3);
-        event.setCanceled(false); //This is EXTREMELY cursed
-    }
+    public static void onPistonPushPre(PistonEvent.Pre event) {
+        World world = (World) event.getWorld();
+        BlockPos offset = event.getFaceOffsetPos();
+        TileEntity glyph = world.getTileEntity(offset.offset(event.getDirection()));
 
+        if(world.getBlockState(offset.offset(event.getDirection())).getBlock() == RegistryHandler.CALCIFY_GLYPH_BLOCK){
+            System.out.println("Calcifier state: " + ((CalcifyGlyphTile) glyph).hasAtom());
+        }
+
+        if (event.getPistonMoveType().isExtend &&
+                world.getBlockState(offset).getBlock() == RegistryHandler.ATOM_BLOCK &&
+                world.getBlockState(offset.offset(event.getDirection())).getBlock() == RegistryHandler.CALCIFY_GLYPH_BLOCK &&
+                !((CalcifyGlyphTile) glyph).hasAtom()) {
+            event.setCanceled(true);
+            world.setBlockState(event.getFaceOffsetPos(), Blocks.AIR.getDefaultState(), 3);
+            ((CalcifyGlyphTile) glyph).setHasAtom(true);
+        }
+    }
 
 
     //For pulling out of glyphs/TE's or the solver
     @SubscribeEvent
-    public static void onPistonPushPost(PistonEvent.Post event){
-        System.out.println("uwu");
+    public static void onPistonPushPost(PistonEvent.Post event) {
+        World world = (World) event.getWorld();
+        BlockPos offset = event.getFaceOffsetPos();
+        TileEntity glyph = world.getTileEntity(offset.offset(event.getDirection()));
+        BlockState blockstate = event.getState();
+
+        if(!event.getPistonMoveType().isExtend &&
+                world.getBlockState(offset).getBlock() == RegistryHandler.CALCIFY_GLYPH_BLOCK &&
+                ((CalcifyGlyphTile) glyph).hasAtom() &&
+                blockstate.getBlock() == Blocks.STICKY_PISTON){
+            world.setBlockState(event.getFaceOffsetPos(), RegistryHandler.ATOM_BLOCK.getDefaultState().with(ELEMENT,Element.SALT), 3);
+            ((CalcifyGlyphTile) glyph).setHasAtom(false);
+        }
     }
 }

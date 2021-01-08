@@ -1,9 +1,11 @@
 package com.kinomora.opusminecraftum;
 
 import net.minecraft.block.AbstractBlock;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.BreakableBlock;
 import net.minecraft.state.EnumProperty;
+import net.minecraft.state.StateContainer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.math.BlockPos;
@@ -14,9 +16,11 @@ import net.minecraft.world.IBlockReader;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+import java.util.Locale;
+
 public class AbstractAtomBlock extends BreakableBlock {
 
-    private static EnumProperty<Element> ELEMENT = EnumProperty.create("element", Element.class);
+    public static final EnumProperty<Element> ELEMENT = EnumProperty.create("element", Element.class);
 
     public AbstractAtomBlock(Properties properties) {
         super(properties);
@@ -35,12 +39,17 @@ public class AbstractAtomBlock extends BreakableBlock {
         return false;
     }
 
+    @Override
+    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
+        builder.add(ELEMENT);
+    }
+
     public enum Element implements IStringSerializable {
-        AIR;
+        NONE, AIR, FIRE, EARTH, WATER, SALT;
 
         @Override
-        public String getString(){
-            return this.name();
+        public String getString() {
+            return this.name().toLowerCase(Locale.ROOT);
         }
     }
 }

@@ -5,7 +5,7 @@ import net.minecraft.tileentity.TileEntityType;
 
 public class CalcifyGlyphTile extends TileEntity {
 
-    private boolean isFull = false;
+    private boolean hasAtom = false;
 
     public CalcifyGlyphTile(TileEntityType<?> tileEntityTypeIn) {
         super(tileEntityTypeIn);
@@ -15,11 +15,11 @@ public class CalcifyGlyphTile extends TileEntity {
         this(RegistryHandler.CALCIFY_GLYPH_TILE);
     }
 
-    public void setFullness(boolean status){
-        isFull = status;
+    public void setHasAtom(boolean status){
+        hasAtom = status;
     }
 
-    public boolean getFullness(){
-        return isFull;
+    public boolean hasAtom(){
+        return hasAtom;
     }
 }
