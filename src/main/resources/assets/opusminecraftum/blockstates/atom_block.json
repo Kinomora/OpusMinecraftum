@@ -1,0 +1,22 @@
+{
+    "variants": {
+        "element=none": {
+            "model": "opusminecraftum:block/fire_atom"
+        },
+        "element=air": {
+            "model": "opusminecraftum:block/air_atom"
+        },
+        "element=fire": {
+            "model": "opusminecraftum:block/fire_atom"
+        },
+        "element=earth": {
+            "model": "opusminecraftum:block/earth_atom"
+        },
+        "element=water": {
+            "model": "opusminecraftum:block/water_atom"
+        },
+        "element=salt": {
+            "model": "opusminecraftum:block/salt_atom"
+        }
+    }
+}
