@@ -1,30 +1,46 @@
-package com.kinomora.opusminecraftum.glyphs;
+package com.kinomora.opusminecraftum;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.BreakableBlock;
 import net.minecraft.block.material.PushReaction;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.state.EnumProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ActionResultType;
+import net.minecraft.util.Hand;
 import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.IBlockReader;
+import net.minecraft.world.World;
 
 import java.util.Locale;
 
-public class CalcificationGlyphBlock extends BreakableBlock {
+public class CalcifyGlyphBlock extends BreakableBlock {
 
     public static final EnumProperty<Fullness> FULLNESS = EnumProperty.create("fullness", Fullness.class);
 
     //FULLNESS = EnumProperty.create("fullness", CalcifyGlyphBlock.Fullness.class);
 
-    public CalcificationGlyphBlock(Properties properties) {
+    public CalcifyGlyphBlock(Properties properties) {
         super(properties);
     }
 
     @Override
+    public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+        TileEntity tile = worldIn.getTileEntity(pos);
+
+        if (!worldIn.isRemote && tile instanceof CalcifyGlyphTile) {
+            System.out.println("Has Atom: " + ((CalcifyGlyphTile)tile).hasAtom());
+        }
+        return super.onBlockActivated(state, worldIn, pos, player, handIn, hit);
+    }
+
+    @Override
     public TileEntity createTileEntity(BlockState state, IBlockReader world) {
-        return new CalcificationGlyphTile();
+        return new CalcifyGlyphTile();
     }
 
     @Override
@@ -34,7 +50,7 @@ public class CalcificationGlyphBlock extends BreakableBlock {
 
     @Override
     public PushReaction getPushReaction(BlockState state) {
-        return PushReaction.IGNORE;
+        return PushReaction.PUSH_ONLY;
     }
 
     @Override
