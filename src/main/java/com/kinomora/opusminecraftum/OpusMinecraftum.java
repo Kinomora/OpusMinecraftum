@@ -23,7 +23,6 @@ public class OpusMinecraftum
     }
 
     public OpusMinecraftum() {
-
     }
 
     private void clientSetup(FMLClientSetupEvent event) {

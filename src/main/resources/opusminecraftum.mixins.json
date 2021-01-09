@@ -1,0 +1,13 @@
+{
+    "required": true,
+    "minVersion": "0.8",
+    "compatibilityLevel": "JAVA_8",
+    "package": "com.kinomora.opusminecraftum.mixin",
+    "refmap": "opusminecraftum.refmap.json",
+    "mixins": ["PistonBlockMixin", "PistonBlockStructureHelperMixin"],
+    "client": [
+    ],
+    "injectors": {
+        "defaultRequire": 1
+    }
+}
