@@ -34,7 +34,7 @@ public class CalcifyGlyphBlock extends BreakableBlock {
 
     @Override
     public PushReaction getPushReaction(BlockState state) {
-        return PushReaction.DESTROY;
+        return PushReaction.IGNORE;
     }
 
     @Override

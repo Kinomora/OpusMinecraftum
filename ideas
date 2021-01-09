@@ -1,0 +1,26 @@
+Solver:
+Best option: Single block that can be placed. Using the manual you select your desired recipe and right click the solver with the manual. This displays a render of the required atom structure above it and auto-solves
+
+Calcifier:
+Idea: Calcifier projects a render X blocks above it, configurable with right/shift right-click, any atom that passes through the render is salted
+Idea: any atom that touches any side/the top side of the calcifier is salted
+
+Bonders:
+"Sticks" two atoms together that are both on top of the two bonder blocks
+block that goes in between to atoms to stick them together
+
+Triplex bonder:
+empowers an atom
+
+Duplication - salt = atom:
+atom underneath or inside duplicator, any salt that touches the top becomes that atom
+
+Projection - metal + QS = metal + 1 tier:
+metal atom on top, QS touches any side or goes inside
+
+Purification - two metals = 1 metal + 1 tier:
+similar to Projection
+
+Animismus - two salt = vite and mors:
+vite generates on top, mors generates on bottom, salt touching 2 of any other side or 2 salts are inserted
+

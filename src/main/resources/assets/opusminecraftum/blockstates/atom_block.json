@@ -1,7 +1,7 @@
 {
     "variants": {
         "element=none": {
-            "model": "opusminecraftum:block/fire_atom"
+            "model": "opusminecraftum:block/empty_atom"
         },
         "element=air": {
             "model": "opusminecraftum:block/air_atom"
@@ -17,6 +17,33 @@
         },
         "element=salt": {
             "model": "opusminecraftum:block/salt_atom"
+        },
+        "element=quicksilver": {
+            "model": "opusminecraftum:block/quicksilver_atom"
+        },
+        "element=vitae": {
+            "model": "opusminecraftum:block/vitae_atom"
+        },
+        "element=mors": {
+            "model": "opusminecraftum:block/mors_atom"
+        },
+        "element=lead": {
+            "model": "opusminecraftum:block/lead_atom"
+        },
+        "element=tin": {
+            "model": "opusminecraftum:block/tin_atom"
+        },
+        "element=copper": {
+            "model": "opusminecraftum:block/copper_atom"
+        },
+        "element=iron": {
+            "model": "opusminecraftum:block/iron_atom"
+        },
+        "element=silver": {
+            "model": "opusminecraftum:block/silver_atom"
+        },
+        "element=gold": {
+            "model": "opusminecraftum:block/gold_atom"
         }
     }
 }
