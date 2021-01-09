@@ -1,4 +1,4 @@
-package com.kinomora.opusminecraftum;
+package com.kinomora.opusminecraftum.glyphs;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -18,13 +18,11 @@ import net.minecraft.world.World;
 
 import java.util.Locale;
 
-public class CalcifyGlyphBlock extends BreakableBlock {
+public class CalcificationGlyphBlock extends BreakableBlock {
 
     public static final EnumProperty<Fullness> FULLNESS = EnumProperty.create("fullness", Fullness.class);
 
-    //FULLNESS = EnumProperty.create("fullness", CalcifyGlyphBlock.Fullness.class);
-
-    public CalcifyGlyphBlock(Properties properties) {
+    public CalcificationGlyphBlock(Properties properties) {
         super(properties);
     }
 
@@ -32,15 +30,15 @@ public class CalcifyGlyphBlock extends BreakableBlock {
     public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
         TileEntity tile = worldIn.getTileEntity(pos);
 
-        if (!worldIn.isRemote && tile instanceof CalcifyGlyphTile) {
-            System.out.println("Has Atom: " + ((CalcifyGlyphTile)tile).hasAtom());
+        if (!worldIn.isRemote && tile instanceof CalcificationGlyphTile) {
+            System.out.println("Has Atom: " + ((CalcificationGlyphTile)tile).hasAtom());
         }
         return super.onBlockActivated(state, worldIn, pos, player, handIn, hit);
     }
 
     @Override
     public TileEntity createTileEntity(BlockState state, IBlockReader world) {
-        return new CalcifyGlyphTile();
+        return new CalcificationGlyphTile();
     }
 
     @Override
