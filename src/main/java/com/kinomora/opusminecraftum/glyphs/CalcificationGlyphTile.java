@@ -1,17 +1,18 @@
-package com.kinomora.opusminecraftum;
+package com.kinomora.opusminecraftum.glyphs;
 
+import com.kinomora.opusminecraftum.RegistryHandler;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
 
-public class CalcifyGlyphTile extends TileEntity {
+public class CalcificationGlyphTile extends TileEntity {
 
     private boolean hasAtom = false;
 
-    public CalcifyGlyphTile(TileEntityType<?> tileEntityTypeIn) {
+    public CalcificationGlyphTile(TileEntityType<?> tileEntityTypeIn) {
         super(tileEntityTypeIn);
     }
 
-    public CalcifyGlyphTile(){
+    public CalcificationGlyphTile(){
         this(RegistryHandler.CALCIFY_GLYPH_TILE);
     }
 

@@ -1,12 +1,10 @@
 package com.kinomora.opusminecraftum;
 
-import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.BreakableBlock;
 import net.minecraft.state.EnumProperty;
 import net.minecraft.state.StateContainer;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
@@ -45,7 +43,7 @@ public class AbstractAtomBlock extends BreakableBlock {
     }
 
     public enum Element implements IStringSerializable {
-        NONE, AIR, FIRE, EARTH, WATER, SALT;
+        NONE, AIR, FIRE, EARTH, WATER, SALT, QUICKSILVER, VITAE, MORS, LEAD, TIN, COPPER, IRON, SILVER, GOLD;
 
         @Override
         public String getString() {

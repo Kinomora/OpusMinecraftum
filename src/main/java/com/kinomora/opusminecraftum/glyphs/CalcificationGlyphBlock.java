@@ -1,4 +1,4 @@
-package com.kinomora.opusminecraftum;
+package com.kinomora.opusminecraftum.glyphs;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -12,19 +12,19 @@ import net.minecraft.world.IBlockReader;
 
 import java.util.Locale;
 
-public class CalcifyGlyphBlock extends BreakableBlock {
+public class CalcificationGlyphBlock extends BreakableBlock {
 
     public static final EnumProperty<Fullness> FULLNESS = EnumProperty.create("fullness", Fullness.class);
 
     //FULLNESS = EnumProperty.create("fullness", CalcifyGlyphBlock.Fullness.class);
 
-    public CalcifyGlyphBlock(Properties properties) {
+    public CalcificationGlyphBlock(Properties properties) {
         super(properties);
     }
 
     @Override
     public TileEntity createTileEntity(BlockState state, IBlockReader world) {
-        return new CalcifyGlyphTile();
+        return new CalcificationGlyphTile();
     }
 
     @Override

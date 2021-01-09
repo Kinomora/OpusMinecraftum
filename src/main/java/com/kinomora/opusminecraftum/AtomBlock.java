@@ -1,11 +1,11 @@
 package com.kinomora.opusminecraftum;
 
+import com.kinomora.opusminecraftum.glyphs.CalcificationGlyphTile;
 import net.minecraft.block.*;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.event.world.PistonEvent;
-import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
@@ -24,16 +24,16 @@ public class AtomBlock extends AbstractAtomBlock {
         TileEntity glyph = world.getTileEntity(offset.offset(event.getDirection()));
 
         if(world.getBlockState(offset.offset(event.getDirection())).getBlock() == RegistryHandler.CALCIFY_GLYPH_BLOCK){
-            System.out.println("Calcifier state: " + ((CalcifyGlyphTile) glyph).hasAtom());
+            System.out.println("Calcifier state: " + ((CalcificationGlyphTile) glyph).hasAtom());
         }
 
         if (event.getPistonMoveType().isExtend &&
                 world.getBlockState(offset).getBlock() == RegistryHandler.ATOM_BLOCK &&
                 world.getBlockState(offset.offset(event.getDirection())).getBlock() == RegistryHandler.CALCIFY_GLYPH_BLOCK &&
-                !((CalcifyGlyphTile) glyph).hasAtom()) {
+                !((CalcificationGlyphTile) glyph).hasAtom()) {
             event.setCanceled(true);
             world.setBlockState(event.getFaceOffsetPos(), Blocks.AIR.getDefaultState(), 3);
-            ((CalcifyGlyphTile) glyph).setHasAtom(true);
+            ((CalcificationGlyphTile) glyph).setHasAtom(true);
         }
     }
 
@@ -48,10 +48,10 @@ public class AtomBlock extends AbstractAtomBlock {
 
         if(!event.getPistonMoveType().isExtend &&
                 world.getBlockState(offset).getBlock() == RegistryHandler.CALCIFY_GLYPH_BLOCK &&
-                ((CalcifyGlyphTile) glyph).hasAtom() &&
+                ((CalcificationGlyphTile) glyph).hasAtom() &&
                 blockstate.getBlock() == Blocks.STICKY_PISTON){
             world.setBlockState(event.getFaceOffsetPos(), RegistryHandler.ATOM_BLOCK.getDefaultState().with(ELEMENT,Element.SALT), 3);
-            ((CalcifyGlyphTile) glyph).setHasAtom(false);
+            ((CalcificationGlyphTile) glyph).setHasAtom(false);
         }
     }
 }

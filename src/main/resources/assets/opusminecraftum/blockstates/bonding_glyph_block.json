@@ -1,0 +1,10 @@
+{
+    "variants": {
+        "connected=false": {
+            "model": "opusminecraftum:block/bonding_glyph_unconnected"
+        },
+        "connected=true": {
+            "model": "opusminecraftum:block/bonding_glyph_connected"
+        }
+    }
+}
