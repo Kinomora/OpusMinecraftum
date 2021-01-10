@@ -1,8 +1,5 @@
 {
     "variants": {
-        "element=none": {
-            "model": "opusminecraftum:block/empty_atom"
-        },
         "element=air": {
             "model": "opusminecraftum:block/air_atom"
         },

@@ -67,7 +67,7 @@ public class AtomBlock extends BreakableBlock {
     }
 
     public enum Element implements IStringSerializable {
-        AIR, FIRE, EARTH, WATER, SALT;
+        AIR, FIRE, EARTH, WATER, SALT, QUICKSILVER, VITAE, MORS, LEAD, TIN, IRON, COPPER, SILVER, GOLD;
 
         @Override
         public String getString() {
