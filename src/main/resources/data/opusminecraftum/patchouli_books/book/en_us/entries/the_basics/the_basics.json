@@ -2,10 +2,21 @@
     "name": "The Basics",
     "icon": "minecraft:writable_book",
     "category": "opusminecraftum:getting_started",
+	"sortnum": 1,
     "pages": [
         {
-            "type": "The Basics",
-            "text": "Opus Minecraftum is based on concepts from the Zachtronics game Opus Magnus. This mod reflects many of the same mechanics derived from it's inspiration, with a few minor tweaks necessitated by ease of use and balance. $(br2) To get started, you will need a few resources: Pistons, Reagent Sources, Glypha, and a Product Accepter."
-        }
+            "type": "text",
+            "text": "Opus Minecraftum is based on concepts from the Zachtronics game Opus Magnum. This mod reflects many of the same mechanics transformed with a few minor tweaks for ease of use and balance.$(br2)To get started, you will need a few resources: Redsotne and Pistons, Reagent Sources, Glyphs, and a Product Accepter."
+        },
+		{
+			"type": "image",
+			"title": "Opus Magnum",
+			"images": [
+			
+		"opusminecraftum:textures/gui/entries/opus_magnum.png"
+			],
+			"text": "Find the game on Steam:$(br2)steampowered.com/app/558990/Opus_Magnum/",
+			"border": true
+		}
     ]
 }

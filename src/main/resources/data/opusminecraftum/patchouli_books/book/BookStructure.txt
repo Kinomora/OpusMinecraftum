@@ -1,0 +1,22 @@
+Structure:
+
+Getting Started
+	The Basics
+	Mechanics
+	Examples
+Reagents
+	Elemental Reagents
+	Special Reagents
+	Metal Reagents
+Glyphs
+	Calcification Glyph
+	Bonding Glyph
+	Projection and Purification Glyph
+	Duplication Glyph
+	Animismus Glyph
+	Triplex Bonding Glyph
+Recipes
+	Product Accepter
+	Basic Recipes
+	Advanced Recipes
+	Additional Recipes

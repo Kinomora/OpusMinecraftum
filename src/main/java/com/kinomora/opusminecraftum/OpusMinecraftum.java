@@ -2,6 +2,9 @@ package com.kinomora.opusminecraftum;
 
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemGroup;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -17,6 +20,13 @@ public class OpusMinecraftum
     private static final Logger LOGGER = LogManager.getLogger();
 
     public static final String ID = "opusminecraftum";
+
+    public static final ItemGroup CREATIVE_TAB = new ItemGroup(ID) {
+        @Override
+        public ItemStack createIcon() {
+            return new ItemStack(RegistryHandler.CALCIFY_GLYPH_BLOCK);
+        }
+    };
 
     public static ResourceLocation createRes(String name) {
         return new ResourceLocation(ID, name);

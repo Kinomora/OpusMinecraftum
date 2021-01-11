@@ -1,0 +1,42 @@
+{
+    "name": "Mechanics",
+    "icon": "minecraft:piston",
+    "category": "opusminecraftum:getting_started",
+	"sortnum": 2,
+    "pages": [
+        {
+            "type": "text",
+            "text": "Atoms, also referred to as Reagents, are the building blocks of the universe. As such, they are used to create a variety of resources when combined.$(br)Glyphs modify or augment reagents in specific and various ways.$(br)The Product Accepter consumes reagents in a particular arrangement, called Recipes, and produces an output. Recipes are selected in this book and applied to an Accepter."
+        },
+		{
+			"type": "image",
+			"title": "Various Reagents",
+			"images": [
+			
+		"opusminecraftum:textures/gui/entries/opus_magnum.png"
+			],
+			"text": "Air, Fire, Water, and Earth Reagents",
+			"border": true
+		},
+		{
+			"type": "image",
+			"title": "Various Glyphs",
+			"images": [
+			
+		"opusminecraftum:textures/gui/entries/opus_magnum.png"
+			],
+			"text": "Calcification, Duplicatiom, and Bonding Glyphs",
+			"border": true
+		},
+		{
+			"type": "image",
+			"title": "The Product Accepter",
+			"images": [
+			
+		"opusminecraftum:textures/gui/entries/opus_magnum.png"
+			],
+			"text": "The Recipe for Clay is projected above this Accepter.",
+			"border": true
+		}
+    ]
+}

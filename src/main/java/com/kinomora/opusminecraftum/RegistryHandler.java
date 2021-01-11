@@ -31,7 +31,7 @@ public class RegistryHandler {
     public static Block DUPLICATION_GLYPH_BLOCK;
     @ObjectHolder(OpusMinecraftum.ID + ":projection_purification_glyph_block")
     public static Block PROJECTION_PURIFICATION_GLYPH_BLOCK;
-    @ObjectHolder(OpusMinecraftum.ID + ":triplex_glyph_block")
+    @ObjectHolder(OpusMinecraftum.ID + ":triplexbonding_glyph_block")
     public static Block TRIPLEX_GLYPH_BLOCK;
 
     //Tile Entities
@@ -63,12 +63,13 @@ public class RegistryHandler {
 
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event){
-        event.getRegistry().register(new BlockItem(ANIMISMUS_GLYPH_BLOCK, new Item.Properties()).setRegistryName(OpusMinecraftum.createRes("animismus_glyph_block")));
-        event.getRegistry().register(new BlockItem(BONDING_GLYPH_BLOCK, new Item.Properties()).setRegistryName(OpusMinecraftum.createRes("bonding_glyph_block")));
-        event.getRegistry().register(new BlockItem(CALCIFY_GLYPH_BLOCK, new Item.Properties()).setRegistryName(OpusMinecraftum.createRes("calcify_glyph_block")));
-        event.getRegistry().register(new BlockItem(DUPLICATION_GLYPH_BLOCK, new Item.Properties()).setRegistryName(OpusMinecraftum.createRes("duplication_glyph_block")));
-        event.getRegistry().register(new BlockItem(PROJECTION_PURIFICATION_GLYPH_BLOCK, new Item.Properties()).setRegistryName(OpusMinecraftum.createRes("projection_purification_glyph_block")));
-        event.getRegistry().register(new BlockItem(TRIPLEX_GLYPH_BLOCK, new Item.Properties()).setRegistryName(OpusMinecraftum.createRes("triplexbonding_glyph_block")));
+        Item.Properties prop = new Item.Properties().group(OpusMinecraftum.CREATIVE_TAB);
+        event.getRegistry().register(new BlockItem(ANIMISMUS_GLYPH_BLOCK, prop).setRegistryName(OpusMinecraftum.createRes("animismus_glyph_block")));
+        event.getRegistry().register(new BlockItem(BONDING_GLYPH_BLOCK, prop).setRegistryName(OpusMinecraftum.createRes("bonding_glyph_block")));
+        event.getRegistry().register(new BlockItem(CALCIFY_GLYPH_BLOCK, prop).setRegistryName(OpusMinecraftum.createRes("calcify_glyph_block")));
+        event.getRegistry().register(new BlockItem(DUPLICATION_GLYPH_BLOCK, prop).setRegistryName(OpusMinecraftum.createRes("duplication_glyph_block")));
+        event.getRegistry().register(new BlockItem(PROJECTION_PURIFICATION_GLYPH_BLOCK, prop).setRegistryName(OpusMinecraftum.createRes("projection_purification_glyph_block")));
+        event.getRegistry().register(new BlockItem(TRIPLEX_GLYPH_BLOCK, prop).setRegistryName(OpusMinecraftum.createRes("triplexbonding_glyph_block")));
     }
 
     @SubscribeEvent
