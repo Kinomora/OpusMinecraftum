@@ -3,21 +3,27 @@ package com.kinomora.opusminecraftum;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.BreakableBlock;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.BucketItem;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.EnumProperty;
 import net.minecraft.state.StateContainer;
-import net.minecraft.util.Direction;
-import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.IBlockReader;
+import net.minecraft.world.IWorld;
+import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.event.world.PistonEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fml.common.Mod;
 
 import java.util.Locale;
@@ -26,26 +32,79 @@ import java.util.Locale;
 public class AtomBlock extends BreakableBlock {
 
     public static final EnumProperty<Element> ELEMENT = EnumProperty.create("element", Element.class);
-    public static final BooleanProperty BOUND_DOWN = BooleanProperty.create("bound_down");
-    public static final BooleanProperty BOUND_UP = BooleanProperty.create("bound_up");
-    public static final BooleanProperty BOUND_NORTH = BooleanProperty.create("bound_north");
-    public static final BooleanProperty BOUND_SOUTH = BooleanProperty.create("bound_south");
-    public static final BooleanProperty BOUND_WEST = BooleanProperty.create("bound_west");
-    public static final BooleanProperty BOUND_EAST = BooleanProperty.create("bound_east");
+    public static final BooleanProperty BOND_DOWN = BooleanProperty.create("bond_down");
+    public static final BooleanProperty BOND_UP = BooleanProperty.create("bond_up");
+    public static final BooleanProperty BOND_NORTH = BooleanProperty.create("bond_north");
+    public static final BooleanProperty BOND_SOUTH = BooleanProperty.create("bond_south");
+    public static final BooleanProperty BOND_WEST = BooleanProperty.create("bond_west");
+    public static final BooleanProperty BOND_EAST = BooleanProperty.create("bond_east");
 
-    public static final BooleanProperty[] BOUND_PROPS = new BooleanProperty[] {
-            BOUND_DOWN, BOUND_UP, BOUND_NORTH, BOUND_SOUTH, BOUND_WEST, BOUND_EAST
+    public static final BooleanProperty[] BONDS = new BooleanProperty[] {
+            BOND_DOWN, BOND_UP, BOND_NORTH, BOND_SOUTH, BOND_WEST, BOND_EAST
     };
 
-    public static Direction STICK_DIRECTION = null;
+    public enum PistonStickType {
+        PULL, BRANCH
+    }
+
+    public static PistonStickType stickType = null;
+    public static Direction stickDirection = null;
 
     protected AtomBlock(Properties properties) {
         super(properties);
+        BlockState defState = this.getDefaultState();
+        for (int i = 0; i < BONDS.length; i++) {
+            defState = defState.with(BONDS[i], false);
+        }
+        this.setDefaultState(defState);
     }
 
     @Override
     public boolean isStickyBlock(BlockState state) {
-        return true;
+        if (stickType == null)
+            return true;
+        else if (stickType == PistonStickType.BRANCH) {
+            return stickDirection != null && state.get(BONDS[stickDirection.getIndex()]);
+        } else if (stickType == PistonStickType.PULL) {
+            return stickDirection != null && state.get(BONDS[stickDirection.getIndex()]);
+        }
+
+        return false;
+    }
+
+    @Override
+    public boolean canStickTo(BlockState state, BlockState other) {
+        if (other.isIn(this)) {
+            if (stickDirection != null) {
+                if (stickType == PistonStickType.PULL)
+                    return state.get(BONDS[stickDirection.getIndex()]);
+                else
+                    return other.get(BONDS[stickDirection.getIndex()]);
+            }
+        }
+
+        return super.canStickTo(state, other);
+    }
+
+    @Override
+    public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+        if (!worldIn.isRemote) {
+            if (player.isSneaking()) {
+                Direction face = hit.getFace();
+                boolean faceBonded = state.get(BONDS[face.getIndex()]);
+                worldIn.setBlockState(pos, state.with(BONDS[face.getIndex()], !faceBonded));
+                if (worldIn.getBlockState(pos).get(BONDS[face.getIndex()])) {
+                    player.sendStatusMessage(new StringTextComponent("Atom is now bonded at " + face), true);
+                } else {
+                    player.sendStatusMessage(new StringTextComponent("Atom is now un-bonded at " + face), true);
+                }
+            } else {
+                Element element = state.get(ELEMENT);
+                worldIn.setBlockState(pos, state.with(ELEMENT, Element.values()[(element.ordinal()+1)%Element.values().length]));
+            }
+        }
+
+        return ActionResultType.SUCCESS;
     }
 
     public VoxelShape getRayTraceShape(BlockState state, IBlockReader reader, BlockPos pos, ISelectionContext context) {
@@ -63,7 +122,13 @@ public class AtomBlock extends BreakableBlock {
 
     @Override
     protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
-        builder.add(ELEMENT, BOUND_DOWN, BOUND_UP, BOUND_NORTH, BOUND_SOUTH, BOUND_WEST, BOUND_EAST);
+        builder.add(ELEMENT);
+        builder.add(BONDS);
+    }
+
+    @Override
+    public BlockState rotate(BlockState state, IWorld world, BlockPos pos, Rotation direction) {
+        return null;
     }
 
     public enum Element implements IStringSerializable {
